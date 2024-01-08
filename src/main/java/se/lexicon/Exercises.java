@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 import java.lang.String;
 import java.util.function.Predicate;
@@ -34,6 +35,11 @@ public class Exercises {
     public static void exercise2(String message) {
         System.out.println(message);
         //Write your code here
+
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> findFemale = (person)->person.getGender().equals(Gender.FEMALE);
+        result=storage.findMany(findFemale);
+        result.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
