@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.function.Function;
+import java.util.Formatter.*;
 
 
 public class Exercises {
@@ -68,7 +70,6 @@ public class Exercises {
         //Write your code here
 
         Person result;
-        //List<Person> result= new ArrayList<>();
         Predicate<Person> filterById123 = (person)->person.getId()==123;
         result = storage.findOne(filterById123);
         if (result!=null){
@@ -79,7 +80,6 @@ public class Exercises {
         }
 
         System.out.println("----------------------");
-
     }
 
     /*
@@ -89,6 +89,19 @@ public class Exercises {
     public static void exercise5(String message) {
         System.out.println(message);
         //Write your code here
+
+        Predicate<Person> filterById456 = (person)->person.getId()==456;
+        Function<Person,String> personToString = person->"Name: "+ person.getFirstName()+
+                                                            " "+ person.getLastName()+
+                                                            " born "+person.getBirthDate();
+        String result = storage.findOneAndMapToString(filterById456,personToString);
+
+        if(result!=null){
+            System.out.println(result);
+        }
+        else {
+            System.out.println("No matching person found");
+        }
 
         System.out.println("----------------------");
     }
@@ -100,6 +113,21 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
 
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> malePersonList = (person)->person.getGender().equals(Gender.MALE) && person.getFirstName().startsWith("E");
+        Function<Person,String> personToString = person->"Name: "+ person.getFirstName()+
+                                                          " "+ person.getLastName()+
+                                                          " Gender "+ person.getGender()+
+                                                          " Birthdate: "+person.getBirthDate();
+        List<String> resultList = storage.findManyAndMapEachToString(malePersonList,personToString);
+
+        if(resultList!=null){
+            for (String str : resultList)
+             System.out.println(str);
+        }
+        else {
+            System.out.println("No matching person found");
+        }
         System.out.println("----------------------");
     }
 

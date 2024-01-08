@@ -1,6 +1,7 @@
 package se.lexicon;
 
 import java.util.Scanner;
+import java.util.Formatter.*;
 
 import static se.lexicon.Exercises.*;
 
