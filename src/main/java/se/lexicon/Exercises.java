@@ -67,6 +67,17 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
 
+        Person result;
+        //List<Person> result= new ArrayList<>();
+        Predicate<Person> filterById123 = (person)->person.getId()==123;
+        result = storage.findOne(filterById123);
+        if (result!=null){
+            System.out.println("Person with id 123 found \n"+ result);
+        }
+        else {
+            System.out.println("Person with id 123 not found");
+        }
+
         System.out.println("----------------------");
 
     }
