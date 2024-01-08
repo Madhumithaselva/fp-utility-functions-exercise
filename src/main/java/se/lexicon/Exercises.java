@@ -19,15 +19,11 @@ public class Exercises {
     public static void exercise1(String message) {
         System.out.println(message);
         //Write your code here
+
         List<Person> result = new ArrayList<>();
         Predicate<Person> findErik= (person)->person.getFirstName().equals("Erik");
         result=storage.findMany(findErik);
-        result.forEach(System.out::println);
-        //findErik.forEach(System.out::println);
-
-        /*for(Person person : PersonList){
-            System.out.println(person.toString());
-        }*/
+        result.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
