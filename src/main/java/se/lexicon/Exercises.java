@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.function.Function;
 import java.util.Formatter.*;
+import java.time.Period;
 
 
 public class Exercises {
@@ -138,6 +139,21 @@ public class Exercises {
     public static void exercise7(String message) {
         System.out.println(message);
         //Write your code here
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> filterBelowAge10 = (person)->Period.between(person.getBirthDate(),LocalDate.now()).getYears()<10;
+        Function<Person,String> personToString = person-> person.getFirstName()+
+                " "+ person.getLastName() + " "+
+                (LocalDate.now().getYear() - person.getBirthDate().getYear())+
+                " years";
+        List<String> resultList = storage.findManyAndMapEachToString(filterBelowAge10,personToString);
+
+        if(resultList!=null){
+            for (String str : resultList)
+                System.out.println(str);
+        }
+        else {
+            System.out.println("No matching person found");
+        }
 
         System.out.println("----------------------");
     }
