@@ -12,6 +12,7 @@ import java.util.function.Function;
 import java.util.Formatter.*;
 import java.time.Period;
 import java.util.function.*;
+import java.util.Comparator;
 
 
 public class Exercises {
@@ -200,14 +201,12 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
 
-
         List<Person> result = new ArrayList<>();
         Predicate<Person> findPalindromeFirstName= person->person.getFirstName().equalsIgnoreCase(
                                                    new StringBuilder(person.getFirstName()).reverse().toString());
         Consumer<Person> printPersonInfo = person ->
                 System.out.println("Persons have Palindrome First name are:  " + person.getFirstName() + " " + person.getLastName());
         storage.findAndDo(findPalindromeFirstName,printPersonInfo);
-
 
         System.out.println("----------------------");
     }
@@ -218,6 +217,11 @@ public class Exercises {
     public static void exercise11(String message) {
         System.out.println(message);
         //Write your code here
+
+        List<Person> nameStartWithA = new ArrayList<>();
+        nameStartWithA= storage.findAndSort(Comparator.comparing(person->person.getBirthDate()));
+        System.out.println("Sorted by birthdate for persons with firstName starting with 'A'");
+        nameStartWithA.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }

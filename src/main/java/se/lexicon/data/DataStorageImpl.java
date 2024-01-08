@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.Collections;
 
 
 /**
@@ -93,7 +94,15 @@ public class DataStorageImpl implements DataStorage {
     @Override
     public List<Person> findAndSort(Comparator<Person> comparator) {
         //todo: implement the method
-        return null;
+
+        List<Person> result = new ArrayList<>();
+        for (Person person : personList){
+            if (person.getFirstName().startsWith("A")) {
+                result.add(person);
+            }
+        }
+        Collections.sort(result,comparator);
+        return result;
     }
 
     @Override
