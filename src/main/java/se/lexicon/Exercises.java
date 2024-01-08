@@ -163,7 +163,12 @@ public class Exercises {
      */
     public static void exercise8(String message) {
         System.out.println(message);
+
         //Write your code here
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> findUlf= (person)->person.getFirstName().equals("Ulf");
+        result=storage.findMany(findUlf);
+        result.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
