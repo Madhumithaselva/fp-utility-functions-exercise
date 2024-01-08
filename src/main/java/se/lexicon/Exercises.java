@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.function.Function;
 import java.util.Formatter.*;
 import java.time.Period;
+import java.util.function.*;
 
 
 public class Exercises {
@@ -167,8 +168,10 @@ public class Exercises {
         //Write your code here
         List<Person> result = new ArrayList<>();
         Predicate<Person> findUlf= (person)->person.getFirstName().equals("Ulf");
-        result=storage.findMany(findUlf);
-        result.forEach(p->System.out.println(p));
+        Consumer<Person> printPersonInfo = person ->
+                System.out.println("Person: " + person.getFirstName() + ", BirthDate" + person.getBirthDate());
+        storage.findAndDo(findUlf,printPersonInfo);
+        //result.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
@@ -180,6 +183,13 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
 
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> findLastNameContainsFirstName= (person)->person.getLastName().contains(person.getFirstName());
+        Consumer<Person> printPersonInfo = person ->
+                System.out.println("Person: " + person.getFirstName() + " " + person.getLastName());
+        storage.findAndDo(findLastNameContainsFirstName,printPersonInfo);
+        //result.forEach(p->System.out.println(p));
+
         System.out.println("----------------------");
     }
 
@@ -189,6 +199,15 @@ public class Exercises {
     public static void exercise10(String message) {
         System.out.println(message);
         //Write your code here
+
+
+        List<Person> result = new ArrayList<>();
+        Predicate<Person> findPalindromeFirstName= person->person.getFirstName().equalsIgnoreCase(
+                                                   new StringBuilder(person.getFirstName()).reverse().toString());
+        Consumer<Person> printPersonInfo = person ->
+                System.out.println("Persons have Palindrome First name are:  " + person.getFirstName() + " " + person.getLastName());
+        storage.findAndDo(findPalindromeFirstName,printPersonInfo);
+
 
         System.out.println("----------------------");
     }
