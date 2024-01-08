@@ -7,7 +7,7 @@ import java.lang.String;
 import java.util.function.Predicate;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.time.LocalDate;
 
 
 public class Exercises {
@@ -50,6 +50,12 @@ public class Exercises {
     public static void exercise3(String message) {
         System.out.println(message);
         //Write your code here
+
+        List<Person> result = new ArrayList<>();
+        LocalDate birthDate = LocalDate.of(20003, 1, 1);
+        Predicate<Person> bornAfter2000 = (person)->person.getBirthDate().isAfter(birthDate) || person.getBirthDate().equals(birthDate);
+        result=storage.findMany(bornAfter2000);
+        result.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
