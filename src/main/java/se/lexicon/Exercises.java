@@ -248,7 +248,15 @@ public class Exercises {
         System.out.println(message);
         //Write your code here
 
+        List<Person> sortWithDate = new ArrayList<>();
 
+        Comparator<Person> lastNameFirstNameComparator = Comparator
+                .comparing((Person person) -> person.getLastName())
+                .thenComparing((Person person) -> person.getFirstName())
+                .thenComparing((Person person) -> person.getBirthDate());
+
+        sortWithDate = storage.findAndSort(lastNameFirstNameComparator);
+        sortWithDate.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
