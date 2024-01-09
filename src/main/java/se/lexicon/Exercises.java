@@ -232,6 +232,11 @@ public class Exercises {
     public static void exercise12(String message) {
         System.out.println(message);
         //Write your code here
+        Predicate<Person> bornBefore1950Predicate = person -> person.getBirthDate().getYear() < 1950;
+        Comparator<Person> birthDateComparator = Comparator.comparing(person -> person.getBirthDate());
+        List<Person> findBornBefore1950 = storage.findAndSort(bornBefore1950Predicate,birthDateComparator);
+        System.out.println("Person born before 1950 in reverse order");
+        findBornBefore1950.forEach(p->System.out.println(p));
 
         System.out.println("----------------------");
     }
@@ -242,6 +247,8 @@ public class Exercises {
     public static void exercise13(String message) {
         System.out.println(message);
         //Write your code here
+
+
 
         System.out.println("----------------------");
     }

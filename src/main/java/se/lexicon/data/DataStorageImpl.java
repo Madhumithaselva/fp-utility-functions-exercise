@@ -108,6 +108,13 @@ public class DataStorageImpl implements DataStorage {
     @Override
     public List<Person> findAndSort(Predicate<Person> filter, Comparator<Person> comparator) {
         //todo: implement the method
-        return null;
+        List<Person> result= new ArrayList<>();
+        for(Person person : personList){
+            if (filter.test(person)){
+                result.add(person);
+            }
+        }
+        Collections.sort(result,comparator);
+        return result;
     }
 }
